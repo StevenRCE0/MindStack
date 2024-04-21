@@ -1,8 +1,35 @@
-//
-//  PanelVisualEffect.swift
-//  MindStack
-//
-//  Created by 砚渤 on 2024/4/22.
-//
+import SwiftUI
 
-import Foundation
+/// Bridge AppKit's NSVisualEffectView into SwiftUI
+struct VisualEffectView: NSViewRepresentable {
+    var material: NSVisualEffectView.Material
+    var blendingMode: NSVisualEffectView.BlendingMode
+    
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        context.coordinator.visualEffectView
+    }
+    
+    func updateNSView(_ view: NSVisualEffectView, context: Context) {
+        context.coordinator.update(
+            material: material,
+            blendingMode: blendingMode
+        )
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+    
+    class Coordinator {
+        let visualEffectView = NSVisualEffectView()
+        
+        init() {
+            visualEffectView.blendingMode = .behindWindow
+        }
+        
+        func update(material: NSVisualEffectView.Material,
+                    blendingMode: NSVisualEffectView.BlendingMode) {
+            visualEffectView.material = material
+        }
+    }
+}

@@ -13,6 +13,7 @@ struct MindStackApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
+            ItemGroup.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,5 +29,6 @@ struct MindStackApp: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+        .windowResizability(.contentSize)
     }
 }

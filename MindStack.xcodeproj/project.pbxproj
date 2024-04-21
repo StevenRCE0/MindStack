@@ -15,6 +15,23 @@
 		B006C9352BCFC5ED007FC600 /* MindStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9342BCFC5ED007FC600 /* MindStackTests.swift */; };
 		B006C93F2BCFC5ED007FC600 /* MindStackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C93E2BCFC5ED007FC600 /* MindStackUITests.swift */; };
 		B006C9412BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9402BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift */; };
+		B0F273AD2BD51DC80047DDE2 /* MindCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273AC2BD51DC80047DDE2 /* MindCard.swift */; };
+		B0F273AE2BD51DC80047DDE2 /* MindCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273AC2BD51DC80047DDE2 /* MindCard.swift */; };
+		B0F273AF2BD51DC80047DDE2 /* MindCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273AC2BD51DC80047DDE2 /* MindCard.swift */; };
+		B0F273B12BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */; };
+		B0F273B22BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */; };
+		B0F273B32BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */; };
+		B0F273B62BD585DD0047DDE2 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */; };
+		B0F273B72BD585DD0047DDE2 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */; };
+		B0F273B82BD585DD0047DDE2 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */; };
+		B0F273BA2BD586600047DDE2 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273B92BD586600047DDE2 /* Modifiers.swift */; };
+		B0F273BE2BD587610047DDE2 /* PanelVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */; };
+		B0F273BF2BD587610047DDE2 /* PanelVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */; };
+		B0F273C02BD587610047DDE2 /* PanelVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */; };
+		B0F273C22BD595CC0047DDE2 /* MindStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273C12BD595CC0047DDE2 /* MindStack.swift */; };
+		B0F273C32BD595CC0047DDE2 /* MindStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273C12BD595CC0047DDE2 /* MindStack.swift */; };
+		B0F273C42BD595CC0047DDE2 /* MindStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273C12BD595CC0047DDE2 /* MindStack.swift */; };
+		B0F273C82BD59D860047DDE2 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = B0F273C72BD59D860047DDE2 /* HotKey */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +64,13 @@
 		B006C93A2BCFC5ED007FC600 /* MindStackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindStackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B006C93E2BCFC5ED007FC600 /* MindStackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStackUITests.swift; sourceTree = "<group>"; };
 		B006C9402BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStackUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B0F273AC2BD51DC80047DDE2 /* MindCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindCard.swift; sourceTree = "<group>"; };
+		B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchWrapper.swift; sourceTree = "<group>"; };
+		B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
+		B0F273B92BD586600047DDE2 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelVisualEffect.swift; sourceTree = "<group>"; };
+		B0F273C12BD595CC0047DDE2 /* MindStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStack.swift; sourceTree = "<group>"; };
+		B0F273C52BD59D230047DDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F273C82BD59D860047DDE2 /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,12 +122,19 @@
 		B006C91F2BCFC5EC007FC600 /* MindStack */ = {
 			isa = PBXGroup;
 			children = (
+				B0F273C52BD59D230047DDE2 /* Info.plist */,
+				B0F273B42BD57D790047DDE2 /* Model */,
 				B006C9202BCFC5EC007FC600 /* MindStackApp.swift */,
+				B0F273B92BD586600047DDE2 /* Modifiers.swift */,
+				B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */,
 				B006C9222BCFC5EC007FC600 /* ContentView.swift */,
-				B006C9242BCFC5EC007FC600 /* Item.swift */,
 				B006C9262BCFC5EC007FC600 /* Assets.xcassets */,
 				B006C92B2BCFC5EC007FC600 /* MindStack.entitlements */,
 				B006C9282BCFC5EC007FC600 /* Preview Content */,
+				B0F273AC2BD51DC80047DDE2 /* MindCard.swift */,
+				B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */,
+				B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */,
+				B0F273C12BD595CC0047DDE2 /* MindStack.swift */,
 			);
 			path = MindStack;
 			sourceTree = "<group>";
@@ -132,6 +164,14 @@
 			path = MindStackUITests;
 			sourceTree = "<group>";
 		};
+		B0F273B42BD57D790047DDE2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B006C9242BCFC5EC007FC600 /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,6 +188,9 @@
 			dependencies = (
 			);
 			name = MindStack;
+			packageProductDependencies = (
+				B0F273C72BD59D860047DDE2 /* HotKey */,
+			);
 			productName = MindStack;
 			productReference = B006C91D2BCFC5EC007FC600 /* MindStack.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +263,9 @@
 				Base,
 			);
 			mainGroup = B006C9142BCFC5EC007FC600;
+			packageReferences = (
+				B0F273C62BD59D860047DDE2 /* XCRemoteSwiftPackageReference "HotKey" */,
+			);
 			productRefGroup = B006C91E2BCFC5EC007FC600 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,7 +310,13 @@
 			files = (
 				B006C9232BCFC5EC007FC600 /* ContentView.swift in Sources */,
 				B006C9252BCFC5EC007FC600 /* Item.swift in Sources */,
+				B0F273BA2BD586600047DDE2 /* Modifiers.swift in Sources */,
+				B0F273BE2BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
+				B0F273B62BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
 				B006C9212BCFC5EC007FC600 /* MindStackApp.swift in Sources */,
+				B0F273B12BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
+				B0F273AD2BD51DC80047DDE2 /* MindCard.swift in Sources */,
+				B0F273C22BD595CC0047DDE2 /* MindStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +325,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B006C9352BCFC5ED007FC600 /* MindStackTests.swift in Sources */,
+				B0F273B22BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
+				B0F273C32BD595CC0047DDE2 /* MindStack.swift in Sources */,
+				B0F273B72BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
+				B0F273AE2BD51DC80047DDE2 /* MindCard.swift in Sources */,
+				B0F273BF2BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +337,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F273AF2BD51DC80047DDE2 /* MindCard.swift in Sources */,
+				B0F273C42BD595CC0047DDE2 /* MindStack.swift in Sources */,
+				B0F273C02BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
+				B0F273B82BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
+				B0F273B32BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
 				B006C93F2BCFC5ED007FC600 /* MindStackUITests.swift in Sources */,
 				B006C9412BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift in Sources */,
 			);
@@ -433,6 +495,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MindStack/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,6 +525,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MindStack/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -587,6 +653,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0F273C62BD59D860047DDE2 /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0F273C72BD59D860047DDE2 /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0F273C62BD59D860047DDE2 /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B006C9152BCFC5EC007FC600 /* Project object */;
 }

@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct MindCard: View {
+    @Binding var text: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RoundedRectangle(cornerSize: .init(width: 10, height: 10), style: .continuous)
+                .fill(Color(white: 0.95))
+                .shadow(radius: 10)
+                .frame(width: 260, height: 180)
+            Text(text)
+                .font(.title3)
+                .padding()
+        }
+        .padding(.vertical)
     }
 }
 
 #Preview {
-    MindCard()
+    MindCard(text: .constant("Hello"))
 }

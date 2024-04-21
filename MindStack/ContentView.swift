@@ -7,53 +7,106 @@
 
 import SwiftUI
 import SwiftData
+import HotKey
 
-struct ContentView: View {
+struct MainPanel: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @Query private var groups: [ItemGroup]
+    
+    @State private var addingGroup = false
+    @State private var addingItem: ItemGroup? = nil
+    @State private var addingText = ""
+    
+    
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        ScrollView {
+            VStack {
+                ForEach(groups, id: \.id) { group in
+                    MindStack(group: group)
                 }
-                .onDelete(perform: deleteItems)
             }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+            .padding(30)
             .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
+                ToolbarItem(placement: .primaryAction) {
+                    Spacer()
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {addingGroup = true}) {
                         Label("Add Item", systemImage: "plus")
                     }
+                    .popover(isPresented: $addingGroup, content: {
+                        TextField("New mind", text: $addingText)
+                            .lineLimit(5)
+                            .frame(width: 240)
+                            .cornerRadius(10)
+                            .padding()
+                            .onSubmit {
+                                withAnimation {
+                                    addingGroup = false
+                                    _ = addGroup(addingText)
+                                }
+                            }
+                    })
                 }
             }
-        } detail: {
-            Text("Select an item")
         }
+        .animation(.easeInOut, value: groups)
     }
-
-    private func addItem() {
+    
+    private func addGroup(_ text: String) -> ItemGroup {
+        let newGroup = ItemGroup(timestamp: Date(), items: [.init(timestamp: Date(), text: text)])
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+            modelContext.insert(newGroup)
         }
+        return newGroup
     }
-
+    
+    // MARK: - To implement
     private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        //        withAnimation {
+        //            for index in offsets {
+        //                modelContext.delete(cards[index])
+        //            }
+        //        }
     }
 }
 
 #Preview {
-    ContentView()
+    MainPanel()
         .modelContainer(for: Item.self, inMemory: true)
+}
+
+struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    @State var showingPanel = false
+    
+    @State var hotKey: HotKey? = nil
+    
+    var body: some View {
+        EmptyView()
+            .frame(width: 0, height: 0)
+            .onAppear {
+                if hotKey == nil {
+                    hotKey = HotKey(key: .z, modifiers: [.shift, .control], keyDownHandler: {
+                        if showingPanel {
+                            showingPanel = false
+                            print("should close")
+                        } else {
+                            NSApp.activate(ignoringOtherApps: true)
+                            showingPanel = true
+                        }
+                    })
+                }
+            }
+            .hidden()
+            .floatingPanel(isPresented: $showingPanel) {
+                VisualEffectView(material: .sidebar, blendingMode: .behindWindow)
+                    .overlay {
+                        MainPanel()
+                            .environment(\.modelContext, modelContext)
+                        
+                    }
+            }
+    }
 }

@@ -6,7 +6,7 @@ fileprivate struct FloatingPanelModifier<PanelContent: View>: ViewModifier {
     @Binding var isPresented: Bool
  
     /// Determines the starting size of the panel
-    var contentRect: CGRect = CGRect(x: 0, y: 0, width: 624, height: 512)
+    var contentRect: CGRect = CGRect(x: 0, y: 0, width: 320, height: 580)
  
     /// Holds the panel content's view closure
     @ViewBuilder let view: () -> PanelContent
@@ -19,7 +19,7 @@ fileprivate struct FloatingPanelModifier<PanelContent: View>: ViewModifier {
             .onAppear {
                 /// When the view appears, create, center and present the panel if ordered
                 panel = FloatingPanel(view: view, contentRect: contentRect, isPresented: $isPresented)
-                panel?.center()
+                panel?.setPosition(vertical: .center, horizontal: .right)
                 if isPresented {
                     present()
                 }
@@ -27,10 +27,11 @@ fileprivate struct FloatingPanelModifier<PanelContent: View>: ViewModifier {
                 /// When the view disappears, close and kill the panel
                 panel?.close()
                 panel = nil
-            }.onChange(of: isPresented) { value in
+            }.onChange(of: isPresented, initial: false) { (value, _) in
                 /// On change of the presentation state, make the panel react accordingly
                 if value {
                     present()
+                    panel?.setPosition(vertical: .center, horizontal: .right)
                 } else {
                     panel?.close()
                 }
@@ -51,7 +52,7 @@ extension View {
      - Parameter content: The displayed content
      **/
     func floatingPanel<Content: View>(isPresented: Binding<Bool>,
-                                      contentRect: CGRect = CGRect(x: 0, y: 0, width: 624, height: 512),
+                                      contentRect: CGRect = CGRect(x: 0, y: 0, width: 320, height: 580),
                                       @ViewBuilder content: @escaping () -> Content) -> some View {
         self.modifier(FloatingPanelModifier(isPresented: isPresented, contentRect: contentRect, view: content))
     }
