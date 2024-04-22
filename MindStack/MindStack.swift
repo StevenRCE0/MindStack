@@ -63,7 +63,7 @@ struct MindStack: View {
     var body: some View {
         VStack(alignment: .leading) {
             if group.items.count > 1 {
-                Text(group.items.sorted(by: {$0.timestamp > $1.timestamp}).last!.text + " \(normalizedDifference.1)")
+                Text(group.items.sorted(by: {$0.timestamp > $1.timestamp}).last!.text)
                     .font(.title2.bold())
                     .foregroundStyle(Color(white: 0.3).opacity(0.7))
                     .blendMode(.hardLight)
