@@ -1,13 +1,13 @@
 {
-  "originHash" : "783e1e60fdafd79ef2bb8898a425bd22d6815fc15e232b1d7d65a4cba67a0ebf",
+  "originHash" : "47d6ad05d53f06ce5e73f49a20fc28dac06b493663f8caa643beb48dfdda88a5",
   "pins" : [
     {
       "identity" : "defaults",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "branch" : "main",
-        "revision" : "23e0a4497e844db64e12740e2ab4a632857d3de6"
+        "revision" : "38925e3cfacf3fb89a81a35b1cd44fd5a5b7e0fa",
+        "version" : "8.2.0"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/soffes/HotKey",
       "state" : {
-        "branch" : "main",
-        "revision" : "4d02d80de143d69b7eeb5962729591a157a57ede"
+        "revision" : "31234dfbb4330b90ee10d89fbacb77316781cc06",
+        "version" : "0.2.0"
       }
     }
   ],
