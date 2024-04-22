@@ -32,6 +32,8 @@
 		B0F273C32BD595CC0047DDE2 /* MindStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273C12BD595CC0047DDE2 /* MindStack.swift */; };
 		B0F273C42BD595CC0047DDE2 /* MindStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273C12BD595CC0047DDE2 /* MindStack.swift */; };
 		B0F273C82BD59D860047DDE2 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = B0F273C72BD59D860047DDE2 /* HotKey */; };
+		B0F273C92BD5C15B0047DDE2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9242BCFC5EC007FC600 /* Item.swift */; };
+		B0F273CA2BD5C15B0047DDE2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9242BCFC5EC007FC600 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,6 +330,7 @@
 				B0F273B22BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
 				B0F273C32BD595CC0047DDE2 /* MindStack.swift in Sources */,
 				B0F273B72BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
+				B0F273C92BD5C15B0047DDE2 /* Item.swift in Sources */,
 				B0F273AE2BD51DC80047DDE2 /* MindCard.swift in Sources */,
 				B0F273BF2BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
 			);
@@ -341,6 +344,7 @@
 				B0F273C42BD595CC0047DDE2 /* MindStack.swift in Sources */,
 				B0F273C02BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
 				B0F273B82BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
+				B0F273CA2BD5C15B0047DDE2 /* Item.swift in Sources */,
 				B0F273B32BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
 				B006C93F2BCFC5ED007FC600 /* MindStackUITests.swift in Sources */,
 				B006C9412BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift in Sources */,

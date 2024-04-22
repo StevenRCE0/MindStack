@@ -24,6 +24,7 @@ final class ItemGroup {
     var timestamp: Date
     @Relationship(deleteRule: .cascade) var items: [Item]
     var name: String = ""
+    var pinned: Bool = false
     
     
     init(timestamp: Date, name: String = "", items: [Item] = []) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MindCard: View {
     @Binding var text: String
+    var bold: Bool = false
     
     var body: some View {
         ZStack {
@@ -18,9 +19,10 @@ struct MindCard: View {
                 .frame(width: 260, height: 180)
             Text(text)
                 .font(.title3)
+                .bold(bold)
                 .padding()
         }
-        .padding(.vertical)
+        .padding(.vertical, 5)
     }
 }
 

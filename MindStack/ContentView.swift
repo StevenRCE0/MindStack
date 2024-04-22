@@ -13,6 +13,7 @@ struct MainPanel: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var groups: [ItemGroup]
     
+    @Binding var pinnedPanel: Bool
     @State private var addingGroup = false
     @State private var addingItem: ItemGroup? = nil
     @State private var addingText = ""
@@ -22,12 +23,25 @@ struct MainPanel: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(groups, id: \.id) { group in
+                Rectangle()
+                    .opacity(0)
+                    .frame(height: 10)
+                ForEach(groups.sorted(by: {$0.timestamp > $1.timestamp}).sorted(by: {$0.pinned && !$1.pinned}), id: \.id) { group in
                     MindStack(group: group)
                 }
             }
             .padding(30)
             .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: {
+                        pinnedPanel.toggle()
+                    }) {
+                        Label("Pin the Panel", systemImage: pinnedPanel ? "pin.circle.fill" : "pin.circle")
+                            .scaleEffect(1.15)
+                            .animation(.easeInOut(duration: 0.125), value: pinnedPanel)
+                    }
+                    .offset(x: -10)
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Spacer()
                 }
@@ -73,7 +87,7 @@ struct MainPanel: View {
 }
 
 #Preview {
-    MainPanel()
+    MainPanel(pinnedPanel: .constant(false))
         .modelContainer(for: Item.self, inMemory: true)
 }
 
@@ -81,6 +95,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State var showingPanel = false
     
+    @State var pinnedPanel: Bool = false
     @State var hotKey: HotKey? = nil
     
     var body: some View {
@@ -91,7 +106,6 @@ struct ContentView: View {
                     hotKey = HotKey(key: .z, modifiers: [.shift, .control], keyDownHandler: {
                         if showingPanel {
                             showingPanel = false
-                            print("should close")
                         } else {
                             NSApp.activate(ignoringOtherApps: true)
                             showingPanel = true
@@ -100,12 +114,11 @@ struct ContentView: View {
                 }
             }
             .hidden()
-            .floatingPanel(isPresented: $showingPanel) {
+            .floatingPanel(isPresented: $showingPanel, isPinned: $pinnedPanel) {
                 VisualEffectView(material: .sidebar, blendingMode: .behindWindow)
                     .overlay {
-                        MainPanel()
+                        MainPanel(pinnedPanel: $pinnedPanel)
                             .environment(\.modelContext, modelContext)
-                        
                     }
             }
     }

@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MindStack: View {
     @Environment(\.modelContext) private var modelContext
+    
+    @Query private var groups: [ItemGroup]
     
     var group: ItemGroup
     @State private var pressureLevel: Float = 0.0
@@ -19,7 +22,7 @@ struct MindStack: View {
     @State private var scrollX: CGFloat = 0
     
     var normalizedDifference: (Double, Int) {
-        var stageCount = (group.items.count - 1) * 2
+        let stageCount = (group.items.count - 1) * 2
         let travelStride = Float(1 / Float(stageCount))
         let travelStage = Int(floor(pressureLevel / travelStride))
         let x = (pressureLevel - (Float(travelStage) * travelStride)) / (2 * travelStride)
@@ -60,34 +63,61 @@ struct MindStack: View {
     var body: some View {
         VStack(alignment: .leading) {
             if group.items.count > 1 {
-                Text(group.items.sorted(by: {$0.timestamp > $1.timestamp}).last!.text)
+                Text(group.items.sorted(by: {$0.timestamp > $1.timestamp}).last!.text + " \(normalizedDifference.1)")
                     .font(.title2.bold())
-                    .foregroundStyle(Color(white: 0.3))
+                    .foregroundStyle(Color(white: 0.3).opacity(0.7))
                     .blendMode(.hardLight)
                     .multilineTextAlignment(.leading)
-                    .padding(EdgeInsets(top: 15, leading: 10, bottom: -15, trailing: 10))
+                    .padding(EdgeInsets(top: 5, leading: 10, bottom: -10, trailing: 10))
+            } else {
+                Rectangle()
+                    .opacity(0)
+                    .frame(height: 10)
             }
             ZStack {
                 ForEach(Array(group.items.sorted(by: {$0.timestamp > $1.timestamp}).enumerated().reversed()), id: \.element) { index, card in
-                    MindCard(text: .constant(card.text))
+                    MindCard(text: .constant(card.text), bold: index == group.items.count - 1)
                         .offset(x: scrollX, y: calculateOffset(index))
                         .scaleEffect(CGFloat(1 + (normalizedDifference.0 - Double(index)) * 0.1))
                         .opacity(calculateOpacity(index))
                         .animation(.spring(), value: pressureLevel)
+                        .overlay(alignment: .center) {
+                            if group.pinned && index == 0 {
+                                RoundedRectangle(cornerSize: .init(width: 10, height: 10), style: .continuous)
+                                    .fill(Color.init(white: 1, opacity: 0))
+                                    .stroke(Color.yellow, lineWidth: 5)
+                                    .shadow(color: .yellow, radius: 10)
+                                    .frame(width: 260, height: 180)
+                            } else {
+                                EmptyView()
+                            }
+                        }
                 }
                 ForceTouchView { pressure, stage in
                     self.pressureLevel = pressure
                     self.pressureStage = stage
                 }
-                .onChange(of: normalizedDifference.1, initial: false) { value, _ in
-                    if value % 2 == 0 {
-                        NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
+                .onChange(of: normalizedDifference.1, initial: false) { _, value in
+                    if value > 1 && value < 2 * group.items.count - 3 && value % 2 == 0 {
+                        NSHapticFeedbackManager.defaultPerformer.perform(.alignment, performanceTime: .now)
                     }
                 }
-                .onChange(of: pressureStage, initial: false) { stage, _ in
+                .onChange(of: pressureStage, initial: false) { _ , stage in
                     if stage == 2 {
-                        withAnimation {
-                            addingItem = group
+                        if group.items.count < 5 {
+                            NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .default)
+                            withAnimation {
+                                addingItem = group
+                            }
+                        } else {
+                            var count = 0
+                            Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
+                                count += 1
+                                if count == 4 {
+                                    timer.invalidate()
+                                }
+                                NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .now)
+                            }
                         }
                     }
                 }
@@ -95,17 +125,31 @@ struct MindStack: View {
         }
         // handle secondary click
         .contextMenu {
+            Button(group.pinned ? "Unpin" : "Pin") {
+                withAnimation {
+                    if !group.pinned {
+                        for group in groups.filter({$0.pinned}) {
+                            group.pinned = false
+                        }
+                    }
+                    group.pinned.toggle()
+                    try! modelContext.save()
+                }
+            }
             if group.items.count > 1 {
                 Button("Pop") {
                     popItem(group: group)
                 }
             }
+            Divider()
+            if group.items.count < 5 {
+                Button("Add New") {
+                    addingItem = group
+                }
+                Divider()
+            }
             Button("Delete All") {
                 deleteAllItems(group: group)
-            }
-            Divider()
-            Button("Add New") {
-                addingItem = group
             }
         }
         .popover(isPresented: Binding(get: {addingItem != nil}, set: { _ in addingItem = nil})) {

@@ -4,18 +4,22 @@ import SwiftUI
 class FloatingPanel<Content: View>: NSPanel {
     
     @Binding var isPresented: Bool
+    @Binding var isPinned: Bool
     
     init(view: () -> Content,
          contentRect: NSRect,
          backing: NSWindow.BackingStoreType = .buffered,
          defer flag: Bool = false,
-         isPresented: Binding<Bool>) {
+         isPresented: Binding<Bool>,
+         isPinned: Binding<Bool> = .constant(false)
+    ) {
         /// Initialize the binding variable by assigning the whole value via an underscore
         self._isPresented = isPresented
+        self._isPinned = isPinned
         
         /// Init the window as usual
         super.init(contentRect: contentRect,
-                   styleMask: [.nonactivatingPanel, .titled, .closable, .fullSizeContentView],
+                   styleMask: [.nonactivatingPanel, .titled, .fullSizeContentView],
                    backing: backing,
                    defer: flag)
         
@@ -28,13 +32,15 @@ class FloatingPanel<Content: View>: NSPanel {
         
         /// Don't show a window title, even if it's set
         titleVisibility = .hidden
-        titlebarAppearsTransparent = true
+        titlebarAppearsTransparent = false
+        titlebarSeparatorStyle = .shadow
+        
         
         /// Since there is no title bar make the window moveable by dragging on the background
-        isMovableByWindowBackground = true
+//        isMovableByWindowBackground = true
         
         /// Hide when unfocused
-        hidesOnDeactivate = true
+        hidesOnDeactivate = false
         
         /// Hide all traffic light buttons
         standardWindowButton(.closeButton)?.isHidden = true
@@ -49,14 +55,14 @@ class FloatingPanel<Content: View>: NSPanel {
         contentView = NSHostingView(rootView: view()
             .ignoresSafeArea()
             .environment(\.floatingPanel, self))
-        
-
     }
     
     /// Close automatically when out of focus, e.g. outside click
     override func resignMain() {
         super.resignMain()
-        close()
+        if !isPinned {
+            close()
+        }
     }
     
     /// Close and toggle presentation, so that it matches the current state of the panel

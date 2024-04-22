@@ -4,6 +4,7 @@ import SwiftUI
 fileprivate struct FloatingPanelModifier<PanelContent: View>: ViewModifier {
     /// Determines wheter the panel should be presented or not
     @Binding var isPresented: Bool
+    @Binding var isPinned: Bool
  
     /// Determines the starting size of the panel
     var contentRect: CGRect = CGRect(x: 0, y: 0, width: 320, height: 580)
@@ -18,7 +19,7 @@ fileprivate struct FloatingPanelModifier<PanelContent: View>: ViewModifier {
         content
             .onAppear {
                 /// When the view appears, create, center and present the panel if ordered
-                panel = FloatingPanel(view: view, contentRect: contentRect, isPresented: $isPresented)
+                panel = FloatingPanel(view: view, contentRect: contentRect, isPresented: $isPresented, isPinned: $isPinned)
                 panel?.setPosition(vertical: .center, horizontal: .right)
                 if isPresented {
                     present()
@@ -26,14 +27,22 @@ fileprivate struct FloatingPanelModifier<PanelContent: View>: ViewModifier {
             }.onDisappear {
                 /// When the view disappears, close and kill the panel
                 panel?.close()
-                panel = nil
-            }.onChange(of: isPresented, initial: false) { (value, _) in
+            }.onChange(of: isPresented, initial: false) { _, value in
                 /// On change of the presentation state, make the panel react accordingly
                 if value {
                     present()
                     panel?.setPosition(vertical: .center, horizontal: .right)
                 } else {
                     panel?.close()
+                }
+            }.onChange(of: isPinned, initial: false) { _, value in
+                panel?.isPinned = value
+                if !value {
+                    withAnimation(.easeIn(duration: 0)) {
+                        panel?.resignMain()
+                        present()
+                        isPresented = true
+                    }
                 }
             }
     }
@@ -52,9 +61,10 @@ extension View {
      - Parameter content: The displayed content
      **/
     func floatingPanel<Content: View>(isPresented: Binding<Bool>,
+                                      isPinned: Binding<Bool> = .constant(false),
                                       contentRect: CGRect = CGRect(x: 0, y: 0, width: 320, height: 580),
                                       @ViewBuilder content: @escaping () -> Content) -> some View {
-        self.modifier(FloatingPanelModifier(isPresented: isPresented, contentRect: contentRect, view: content))
+        self.modifier(FloatingPanelModifier(isPresented: isPresented, isPinned: isPinned, contentRect: contentRect, view: content ))
     }
 }
 
