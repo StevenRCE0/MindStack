@@ -21,12 +21,15 @@ struct MainPanel: View {
     }
     @State private var addingGroup = false
     @State private var addingItem: ItemGroup? = nil
-    @State private var addingText = ""
+    
+    private var sortedGroups: [ItemGroup] {
+        groups.sorted(by: {$0.timestamp > $1.timestamp}).sorted(by: {$0.pinned && !$1.pinned})
+    }
     
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(groups.sorted(by: {$0.timestamp > $1.timestamp}).sorted(by: {$0.pinned && !$1.pinned}), id: \.id) { group in
+                ForEach(sortedGroups, id: \.id) { group in
                     MindStack(group: group)
                 }
             }
@@ -36,9 +39,12 @@ struct MainPanel: View {
                     Button(action: {
                         pinnedPanel.toggle()
                     }) {
-                        Label("Pin the Panel", systemImage: pinnedPanel ? "pin.circle.fill" : "pin.circle")
-                            .scaleEffect(1.15)
-                            .animation(.easeInOut(duration: 0.125), value: pinnedPanel)
+                        Label(
+                            "Pin the Panel",
+                            systemImage: pinnedPanel ? "pin.circle.fill" : "pin.circle"
+                        )
+                        .scaleEffect(1.15)
+                        .animation(.easeInOut(duration: 0.125), value: pinnedPanel)
                     }
                     .offset(x: -10)
                 }
@@ -50,17 +56,9 @@ struct MainPanel: View {
                         Label("Add Item", systemImage: "plus")
                     }
                     .popover(isPresented: $addingGroup, content: {
-                        TextField("New mind", text: $addingText)
-                            .lineLimit(5)
-                            .frame(width: 240)
-                            .cornerRadius(10)
-                            .padding()
-                            .onSubmit {
-                                withAnimation {
-                                    addingGroup = false
-                                    _ = addGroup(addingText)
-                                }
-                            }
+                        NewMind(addingItem: $addingItem) { text, group in
+                            _ = addGroup(text)
+                        }
                     })
                 }
             }
@@ -73,22 +71,15 @@ struct MainPanel: View {
         withAnimation {
             modelContext.insert(newGroup)
         }
+        try! modelContext.save()
         return newGroup
-    }
-    
-    // MARK: - To implement
-    private func deleteItems(offsets: IndexSet) {
-        //        withAnimation {
-        //            for index in offsets {
-        //                modelContext.delete(cards[index])
-        //            }
-        //        }
     }
 }
 
 #Preview {
     MainPanel(pinnedPanel: .constant(false))
-        .modelContainer(for: Item.self, inMemory: true)
+        .frame(width: 500, height: 600)
+        .modelContainer(for: [ItemGroup.self, Item.self], inMemory: true)
 }
 
 struct ContentView: View {

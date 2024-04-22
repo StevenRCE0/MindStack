@@ -17,7 +17,6 @@ struct MindStack: View {
     @State private var pressureLevel: Float = 0.0
     @State private var pressureStage: Int = 0
     @State private var addingItem: ItemGroup? = nil
-    @State private var addingText = ""
     
     @State private var scrollX: CGFloat = 0
     @State private var popped: [PersistentIdentifier] = []
@@ -25,11 +24,15 @@ struct MindStack: View {
     @State private var swipeActionTimer: Timer?
     private let swipeToPopThreshold: CGFloat = -220
     
+    private var sortedItems: [Item] {
+        group.items.sorted(by: {$0.timestamp > $1.timestamp})
+    }
+    
     private func calculateSwipeOffset() {
         print(scrollX)
         if scrollX < swipeToPopThreshold {
             withAnimation(.spring(.snappy)) {
-                popped.append(group.items.sorted(by: {$0.timestamp > $1.timestamp}).first!.id)
+                popped.append(sortedItems.first!.id)
                 popItem(group: group)
                 scrollX = 0
             }
@@ -79,7 +82,7 @@ struct MindStack: View {
         return (normalizedDifference.0 - Double(index)) * -20
     }
     
-    fileprivate func actionHapticFeedback() {
+    private func actionHapticFeedback() {
         var count = 0
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
             count += 1
@@ -90,10 +93,26 @@ struct MindStack: View {
         }
     }
     
+    private func calculateOffsetX(card: Item, index: Int) -> CGFloat {
+        if popped.contains(card.id) {
+            return -300
+        } else {
+            if index == 0 {
+                if scrollX > 0 {
+                    return 10 * log10(scrollX + 1)
+                } else {
+                    return scrollX
+                }
+            } else {
+                return 0
+            }
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             if group.items.count > 1 {
-                Text(group.items.sorted(by: {$0.timestamp > $1.timestamp}).last!.text)
+                Text(sortedItems.last!.text)
                     .font(.title2.bold())
                     .foregroundStyle(Color(white: 0.3).opacity(0.7))
                     .blendMode(.hardLight)
@@ -105,9 +124,9 @@ struct MindStack: View {
                     .frame(height: 10)
             }
             ZStack {
-                ForEach(Array(group.items.sorted(by: {$0.timestamp > $1.timestamp}).enumerated().reversed()), id: \.element) { index, card in
+                ForEach(Array(sortedItems).enumerated().reversed(), id: \.element) { index, card in
                     MindCard(text: .constant(card.text), bold: index == group.items.count - 1)
-                        .offset(x: popped.contains(card.id) ? -300 : (index == 0 ? (scrollX > 0 ? 10 * log10(scrollX + 1) : scrollX) : 0), y: calculateOffset(index))
+                        .offset(x: calculateOffsetX(card: card, index: index), y: calculateOffset(index))
                         .scaleEffect(CGFloat(1 + (normalizedDifference.0 - Double(index)) * 0.1))
                         .opacity(calculateOpacity(index))
                         .animation(.spring(), value: pressureLevel)
@@ -189,18 +208,9 @@ struct MindStack: View {
             }
         }
         .popover(isPresented: Binding(get: {addingItem != nil}, set: { _ in addingItem = nil})) {
-            EmptyView()
-            TextField("New mind", text: $addingText)
-                .lineLimit(5)
-                .frame(width: 240)
-                .cornerRadius(10)
-                .padding()
-                .onSubmit {
-                    withAnimation {
-                        addItem(addingText, group: addingItem!)
-                        addingItem = nil
-                    }
-                }
+            NewMind(addingItem: $addingItem) { text, group in
+                addItem(text, group: group!)
+            }
         }
     }
     
@@ -221,7 +231,7 @@ struct MindStack: View {
     
     private func popItem(group: ItemGroup) {
         withAnimation {
-            if let toPop = group.items.sorted(by: {$0.timestamp > $1.timestamp}).first {
+            if let toPop = sortedItems.first {
                 group.items.remove(at: group.items.firstIndex(of: toPop)!)
                 if group.items.isEmpty {
                     modelContext.delete(group)

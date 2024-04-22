@@ -36,6 +36,9 @@
 		B0F273CA2BD5C15B0047DDE2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9242BCFC5EC007FC600 /* Item.swift */; };
 		B0F273CD2BD5E7210047DDE2 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = B0F273CC2BD5E7210047DDE2 /* Defaults */; };
 		B0F273CF2BD5E74C0047DDE2 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */; };
+		B0F273D12BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
+		B0F273D22BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
+		B0F273D32BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,7 @@
 		B0F273C12BD595CC0047DDE2 /* MindStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStack.swift; sourceTree = "<group>"; };
 		B0F273C52BD59D230047DDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		B0F273D02BD681E70047DDE2 /* NewMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMind.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */,
 				B0F273C12BD595CC0047DDE2 /* MindStack.swift */,
 				B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */,
+				B0F273D02BD681E70047DDE2 /* NewMind.swift */,
 			);
 			path = MindStack;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			files = (
 				B006C9232BCFC5EC007FC600 /* ContentView.swift in Sources */,
 				B006C9252BCFC5EC007FC600 /* Item.swift in Sources */,
+				B0F273D12BD681E70047DDE2 /* NewMind.swift in Sources */,
 				B0F273BA2BD586600047DDE2 /* Modifiers.swift in Sources */,
 				B0F273BE2BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
 				B0F273B62BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
@@ -336,6 +342,7 @@
 			files = (
 				B006C9352BCFC5ED007FC600 /* MindStackTests.swift in Sources */,
 				B0F273B22BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
+				B0F273D22BD681E70047DDE2 /* NewMind.swift in Sources */,
 				B0F273C32BD595CC0047DDE2 /* MindStack.swift in Sources */,
 				B0F273B72BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
 				B0F273C92BD5C15B0047DDE2 /* Item.swift in Sources */,
@@ -348,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F273D32BD681E70047DDE2 /* NewMind.swift in Sources */,
 				B0F273AF2BD51DC80047DDE2 /* MindCard.swift in Sources */,
 				B0F273C42BD595CC0047DDE2 /* MindStack.swift in Sources */,
 				B0F273C02BD587610047DDE2 /* PanelVisualEffect.swift in Sources */,
