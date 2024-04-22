@@ -6,7 +6,9 @@ struct VisualEffectView: NSViewRepresentable {
     var blendingMode: NSVisualEffectView.BlendingMode
     
     func makeNSView(context: Context) -> NSVisualEffectView {
-        context.coordinator.visualEffectView
+        var view = context.coordinator.visualEffectView
+        view.state = .active
+        return view
     }
     
     func updateNSView(_ view: NSVisualEffectView, context: Context) {

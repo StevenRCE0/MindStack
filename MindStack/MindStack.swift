@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MindStack: View {
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) private var modelContext
     
     @Query private var groups: [ItemGroup]
@@ -114,7 +115,7 @@ struct MindStack: View {
             if group.items.count > 1 {
                 Text(sortedItems.last!.text)
                     .font(.title2.bold())
-                    .foregroundStyle(Color(white: 0.3).opacity(0.7))
+                    .foregroundStyle(.foreground.opacity(0.7))
                     .blendMode(.hardLight)
                     .multilineTextAlignment(.leading)
                     .padding(EdgeInsets(top: 15, leading: 10, bottom: -10, trailing: 10))
@@ -134,8 +135,9 @@ struct MindStack: View {
                             if group.pinned && index == 0 {
                                 RoundedRectangle(cornerSize: .init(width: 10, height: 10), style: .continuous)
                                     .fill(Color.init(white: 1, opacity: 0))
-                                    .stroke(Color.yellow, lineWidth: 5)
-                                    .shadow(color: .yellow, radius: 10)
+                                    .stroke(colorScheme == .light ? Color.yellow : Color.orange, lineWidth: 5)
+                                    .opacity(colorScheme == .light ? 1 : 0.6)
+                                    .shadow(color: colorScheme == .light ? Color.yellow : Color.orange, radius: 10)
                                     .frame(width: 260, height: 180)
                             } else {
                                 EmptyView()

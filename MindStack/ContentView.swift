@@ -27,43 +27,60 @@ struct MainPanel: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(sortedGroups, id: \.id) { group in
-                    MindStack(group: group)
-                }
-            }
-            .padding(EdgeInsets(top: 10, leading: 30, bottom: 40, trailing: 30))
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button(action: {
-                        pinnedPanel.toggle()
-                    }) {
-                        Label(
-                            "Pin the Panel",
-                            systemImage: pinnedPanel ? "pin.circle.fill" : "pin.circle"
-                        )
-                        .scaleEffect(1.15)
-                        .animation(.easeInOut(duration: 0.125), value: pinnedPanel)
-                    }
-                    .offset(x: -10)
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Spacer()
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: {addingGroup = true}) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                    .popover(isPresented: $addingGroup, content: {
-                        NewMind(addingItem: $addingItem) { text, group in
-                            _ = addGroup(text)
+        ZStack {
+            if groups.isEmpty {
+                VStack {
+                    Image(systemName: "rectangle.stack")
+                        .font(.system(size: 64))
+                    Text("No Stacks. Click \(Image(systemName: "plus")) to Begin")
+                        .font(.title2)
+                        .padding(.top)
+                        .onTapGesture {
+                            addingGroup.toggle()
                         }
-                    })
+                }
+                .foregroundColor(.primary.opacity(0.7))
+                .blendMode(.hardLight)
+            } else {
+                ScrollView {
+                    VStack {
+                        ForEach(sortedGroups, id: \.id) { group in
+                            MindStack(group: group)
+                        }
+                    }
+                    .padding(EdgeInsets(top: 10, leading: 30, bottom: 40, trailing: 30))
                 }
             }
         }
-        .animation(.easeInOut, value: groups)
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button(action: {
+                    pinnedPanel.toggle()
+                }) {
+                    Label(
+                        "Pin the Panel",
+                        systemImage: pinnedPanel ? "pin.circle.fill" : "pin.circle"
+                    )
+                    .scaleEffect(1.15)
+                    .animation(.easeInOut(duration: 0.125), value: pinnedPanel)
+                }
+                .offset(x: -10)
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Spacer()
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {addingGroup = true}) {
+                    Label("Add Item", systemImage: "plus")
+                }
+                .popover(isPresented: $addingGroup, content: {
+                    NewMind(addingItem: $addingItem) { text, group in
+                        _ = addGroup(text)
+                    }
+                })
+            }
+        }
+        .animation(.easeInOut(duration: 0.125), value: groups)
     }
     
     private func addGroup(_ text: String) -> ItemGroup {
