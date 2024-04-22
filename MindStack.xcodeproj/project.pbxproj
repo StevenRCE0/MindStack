@@ -34,6 +34,8 @@
 		B0F273C82BD59D860047DDE2 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = B0F273C72BD59D860047DDE2 /* HotKey */; };
 		B0F273C92BD5C15B0047DDE2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9242BCFC5EC007FC600 /* Item.swift */; };
 		B0F273CA2BD5C15B0047DDE2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9242BCFC5EC007FC600 /* Item.swift */; };
+		B0F273CD2BD5E7210047DDE2 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = B0F273CC2BD5E7210047DDE2 /* Defaults */; };
+		B0F273CF2BD5E74C0047DDE2 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,7 @@
 		B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelVisualEffect.swift; sourceTree = "<group>"; };
 		B0F273C12BD595CC0047DDE2 /* MindStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStack.swift; sourceTree = "<group>"; };
 		B0F273C52BD59D230047DDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F273CD2BD5E7210047DDE2 /* Defaults in Frameworks */,
 				B0F273C82BD59D860047DDE2 /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +141,7 @@
 				B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */,
 				B0F273BD2BD587610047DDE2 /* PanelVisualEffect.swift */,
 				B0F273C12BD595CC0047DDE2 /* MindStack.swift */,
+				B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */,
 			);
 			path = MindStack;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 			name = MindStack;
 			packageProductDependencies = (
 				B0F273C72BD59D860047DDE2 /* HotKey */,
+				B0F273CC2BD5E7210047DDE2 /* Defaults */,
 			);
 			productName = MindStack;
 			productReference = B006C91D2BCFC5EC007FC600 /* MindStack.app */;
@@ -267,6 +273,7 @@
 			mainGroup = B006C9142BCFC5EC007FC600;
 			packageReferences = (
 				B0F273C62BD59D860047DDE2 /* XCRemoteSwiftPackageReference "HotKey" */,
+				B0F273CB2BD5E7210047DDE2 /* XCRemoteSwiftPackageReference "Defaults" */,
 			);
 			productRefGroup = B006C91E2BCFC5EC007FC600 /* Products */;
 			projectDirPath = "";
@@ -317,6 +324,7 @@
 				B0F273B62BD585DD0047DDE2 /* FloatingPanel.swift in Sources */,
 				B006C9212BCFC5EC007FC600 /* MindStackApp.swift in Sources */,
 				B0F273B12BD529F70047DDE2 /* ForceTouchWrapper.swift in Sources */,
+				B0F273CF2BD5E74C0047DDE2 /* Defaults.swift in Sources */,
 				B0F273AD2BD51DC80047DDE2 /* MindCard.swift in Sources */,
 				B0F273C22BD595CC0047DDE2 /* MindStack.swift in Sources */,
 			);
@@ -667,6 +675,14 @@
 				kind = branch;
 			};
 		};
+		B0F273CB2BD5E7210047DDE2 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -674,6 +690,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B0F273C62BD59D860047DDE2 /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;
+		};
+		B0F273CC2BD5E7210047DDE2 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0F273CB2BD5E7210047DDE2 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

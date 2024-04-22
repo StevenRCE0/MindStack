@@ -19,7 +19,7 @@ class FloatingPanel<Content: View>: NSPanel {
         
         /// Init the window as usual
         super.init(contentRect: contentRect,
-                   styleMask: [.nonactivatingPanel, .titled, .fullSizeContentView],
+                   styleMask: [.nonactivatingPanel, .titled],
                    backing: backing,
                    defer: flag)
         
@@ -28,12 +28,12 @@ class FloatingPanel<Content: View>: NSPanel {
         level = .floating
         
         /// Allow the pannel to be overlaid in a fullscreen space
-        collectionBehavior.insert(.fullScreenAuxiliary)
+        collectionBehavior = collectionBehavior.union([.fullScreenAuxiliary, .moveToActiveSpace, .auxiliary])
         
         /// Don't show a window title, even if it's set
         titleVisibility = .hidden
         titlebarAppearsTransparent = false
-        titlebarSeparatorStyle = .shadow
+        titlebarSeparatorStyle = .automatic
         
         
         /// Since there is no title bar make the window moveable by dragging on the background

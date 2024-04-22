@@ -8,32 +8,29 @@
 import SwiftUI
 import SwiftData
 import HotKey
+import Defaults
 
 struct MainPanel: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var groups: [ItemGroup]
     
-    @Binding var pinnedPanel: Bool
+    @Binding var pinnedPanel: Bool {
+        didSet {
+            Defaults[.pinnedPanel] = pinnedPanel
+        }
+    }
     @State private var addingGroup = false
     @State private var addingItem: ItemGroup? = nil
     @State private var addingText = ""
     
-    
-    
     var body: some View {
         ScrollView {
             VStack {
-                Rectangle()
-                    .opacity(0)
-                    .frame(height: 10)
                 ForEach(groups.sorted(by: {$0.timestamp > $1.timestamp}).sorted(by: {$0.pinned && !$1.pinned}), id: \.id) { group in
                     MindStack(group: group)
                 }
-                Rectangle()
-                    .opacity(0)
-                    .frame(height: 5)
             }
-            .padding(30)
+            .padding(EdgeInsets(top: 10, leading: 30, bottom: 40, trailing: 30))
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {
@@ -97,8 +94,7 @@ struct MainPanel: View {
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State var showingPanel = false
-    
-    @State var pinnedPanel: Bool = false
+    @State var pinnedPanel: Bool = Defaults[.pinnedPanel]
     @State var hotKey: HotKey? = nil
     
     var body: some View {
@@ -120,8 +116,10 @@ struct ContentView: View {
             .floatingPanel(isPresented: $showingPanel, isPinned: $pinnedPanel) {
                 VisualEffectView(material: .sidebar, blendingMode: .behindWindow)
                     .overlay {
-                        MainPanel(pinnedPanel: $pinnedPanel)
-                            .environment(\.modelContext, modelContext)
+                        MainPanel(
+                            pinnedPanel: $pinnedPanel
+                        )
+                        .environment(\.modelContext, modelContext)
                     }
             }
     }
