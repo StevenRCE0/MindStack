@@ -117,7 +117,7 @@ struct MindStack: View {
                     .foregroundStyle(Color(white: 0.3).opacity(0.7))
                     .blendMode(.hardLight)
                     .multilineTextAlignment(.leading)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: -10, trailing: 10))
+                    .padding(EdgeInsets(top: 15, leading: 10, bottom: -10, trailing: 10))
             } else {
                 Rectangle()
                     .opacity(0)
