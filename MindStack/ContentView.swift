@@ -29,6 +29,9 @@ struct MainPanel: View {
                 ForEach(groups.sorted(by: {$0.timestamp > $1.timestamp}).sorted(by: {$0.pinned && !$1.pinned}), id: \.id) { group in
                     MindStack(group: group)
                 }
+                Rectangle()
+                    .opacity(0)
+                    .frame(height: 5)
             }
             .padding(30)
             .toolbar {
