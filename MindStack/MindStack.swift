@@ -151,6 +151,9 @@ struct MindStack: View {
                     self.pressureLevel = pressure
                     self.pressureStage = stage
                 } swipe: { event, touches in
+                    if abs(event.deltaX) < abs(event.deltaY) {
+                        return
+                    }
                     scrollX += event.deltaX
                     if scrollX < swipeToPopThreshold {
                         if touches?.isEmpty ?? false {

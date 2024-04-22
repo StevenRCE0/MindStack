@@ -12,7 +12,16 @@ import Defaults
 
 struct MainPanel: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var groups: [ItemGroup]
+    @Query(
+        filter: #Predicate { $0.pinned },
+        sort: \ItemGroup.timestamp,
+        order: .reverse
+    ) private var pinnedGroups: [ItemGroup]
+    @Query(
+        filter: #Predicate { !$0.pinned },
+        sort: \ItemGroup.timestamp,
+        order: .reverse
+    ) private var groups: [ItemGroup]
     
     @Binding var pinnedPanel: Bool {
         didSet {
@@ -21,10 +30,6 @@ struct MainPanel: View {
     }
     @State private var addingGroup = false
     @State private var addingItem: ItemGroup? = nil
-    
-    private var sortedGroups: [ItemGroup] {
-        groups.sorted(by: {$0.timestamp > $1.timestamp}).sorted(by: {$0.pinned && !$1.pinned})
-    }
     
     var body: some View {
         ZStack {
@@ -44,7 +49,7 @@ struct MainPanel: View {
             } else {
                 ScrollView {
                     VStack {
-                        ForEach(sortedGroups, id: \.id) { group in
+                        ForEach(pinnedGroups + groups, id: \.id) { group in
                             MindStack(group: group)
                         }
                     }
@@ -80,7 +85,7 @@ struct MainPanel: View {
                 })
             }
         }
-        .animation(.easeInOut(duration: 0.125), value: groups)
+        .animation(.snappy, value: groups)
     }
     
     private func addGroup(_ text: String) -> ItemGroup {
