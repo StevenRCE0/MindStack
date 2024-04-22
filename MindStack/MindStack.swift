@@ -20,6 +20,25 @@ struct MindStack: View {
     @State private var addingText = ""
     
     @State private var scrollX: CGFloat = 0
+    @State private var popped: [PersistentIdentifier] = []
+    
+    @State private var swipeActionTimer: Timer?
+    private let swipeToPopThreshold: CGFloat = -220
+    
+    private func calculateSwipeOffset() {
+        print(scrollX)
+        if scrollX < swipeToPopThreshold {
+            withAnimation(.spring(.snappy)) {
+                popped.append(group.items.first!.id)
+                popItem(group: group)
+                scrollX = 0
+            }
+        } else {
+            withAnimation(.spring(.snappy)) {
+                scrollX = 0
+            }
+        }
+    }
     
     var normalizedDifference: (Double, Int) {
         let stageCount = (group.items.count - 1) * 2
@@ -60,6 +79,17 @@ struct MindStack: View {
         return (normalizedDifference.0 - Double(index)) * -20
     }
     
+    fileprivate func actionHapticFeedback() {
+        var count = 0
+        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
+            count += 1
+            if count == 4 {
+                timer.invalidate()
+            }
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .now)
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             if group.items.count > 1 {
@@ -77,7 +107,7 @@ struct MindStack: View {
             ZStack {
                 ForEach(Array(group.items.sorted(by: {$0.timestamp > $1.timestamp}).enumerated().reversed()), id: \.element) { index, card in
                     MindCard(text: .constant(card.text), bold: index == group.items.count - 1)
-                        .offset(x: scrollX, y: calculateOffset(index))
+                        .offset(x: popped.contains(card.id) ? -300 : (index == 0 ? (scrollX > 0 ? 10 * log10(scrollX + 1) : scrollX) : 0), y: calculateOffset(index))
                         .scaleEffect(CGFloat(1 + (normalizedDifference.0 - Double(index)) * 0.1))
                         .opacity(calculateOpacity(index))
                         .animation(.spring(), value: pressureLevel)
@@ -96,6 +126,19 @@ struct MindStack: View {
                 ForceTouchView { pressure, stage in
                     self.pressureLevel = pressure
                     self.pressureStage = stage
+                } swipe: { event, touches in
+                    scrollX += event.deltaX
+                    if scrollX < swipeToPopThreshold {
+                        if touches?.isEmpty ?? false {
+                            calculateSwipeOffset()
+                        }
+                    }
+                    swipeActionTimer?.invalidate()
+                    if touches?.isEmpty ?? true {
+                        swipeActionTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+                            calculateSwipeOffset()
+                        }
+                    }
                 }
                 .onChange(of: normalizedDifference.1, initial: false) { _, value in
                     if value > 1 && value < 2 * group.items.count - 3 && value % 2 == 0 {
@@ -110,14 +153,7 @@ struct MindStack: View {
                                 addingItem = group
                             }
                         } else {
-                            var count = 0
-                            Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-                                count += 1
-                                if count == 4 {
-                                    timer.invalidate()
-                                }
-                                NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .now)
-                            }
+                            actionHapticFeedback()
                         }
                     }
                 }
@@ -187,6 +223,9 @@ struct MindStack: View {
         withAnimation {
             if let toPop = group.items.sorted(by: {$0.timestamp > $1.timestamp}).first {
                 group.items.remove(at: group.items.firstIndex(of: toPop)!)
+                if group.items.isEmpty {
+                    modelContext.delete(group)
+                }
                 try! modelContext.save()
             }
         }
