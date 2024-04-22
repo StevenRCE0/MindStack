@@ -29,7 +29,7 @@ struct MindStack: View {
         print(scrollX)
         if scrollX < swipeToPopThreshold {
             withAnimation(.spring(.snappy)) {
-                popped.append(group.items.first!.id)
+                popped.append(group.items.sorted(by: {$0.timestamp > $1.timestamp}).first!.id)
                 popItem(group: group)
                 scrollX = 0
             }
