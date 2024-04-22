@@ -30,7 +30,6 @@ struct MindStack: View {
     }
     
     private func calculateSwipeOffset() {
-        print(scrollX)
         if scrollX < swipeToPopThreshold {
             withAnimation(.spring(.snappy)) {
                 popped.append(sortedItems.first!.id)
@@ -110,6 +109,10 @@ struct MindStack: View {
         }
     }
     
+    private func calculateScale(_ index: Int) -> CGFloat {
+        return CGFloat(1 + (normalizedDifference.0 - Double(index)) * 0.1)
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             if group.items.count > 1 {
@@ -126,9 +129,9 @@ struct MindStack: View {
             }
             ZStack {
                 ForEach(Array(sortedItems).enumerated().reversed(), id: \.element) { index, card in
-                    MindCard(text: .constant(card.text), bold: index == group.items.count - 1)
+                    MindCard(text: .constant(card.text), bold: index == group.items.count - 1, textSelection: .init(index == 0))
                         .offset(x: calculateOffsetX(card: card, index: index), y: calculateOffset(index))
-                        .scaleEffect(CGFloat(1 + (normalizedDifference.0 - Double(index)) * 0.1))
+                        .scaleEffect(calculateScale(index))
                         .opacity(calculateOpacity(index))
                         .animation(.spring(), value: pressureLevel)
                         .overlay(alignment: .center) {
@@ -180,7 +183,6 @@ struct MindStack: View {
                 }
             }
         }
-        // handle secondary click
         .contextMenu {
             Button(group.pinned ? "Unpin" : "Pin") {
                 withAnimation {
@@ -243,7 +245,3 @@ struct MindStack: View {
         }
     }
 }
-
-//#Preview {
-//    MindStack()
-//}

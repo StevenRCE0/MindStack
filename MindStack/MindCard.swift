@@ -12,6 +12,15 @@ struct MindCard: View {
     @Binding var text: String
     var bold: Bool = false
     
+    struct Selectable: TextSelectability {
+        static var allowsSelection = false
+        
+        init(_ enabled: Bool = false) {
+            MindCard.Selectable.allowsSelection = enabled
+        }
+    }
+    var textSelection: Selectable = .init()
+    
     var fillStyle: some ShapeStyle {
         get {
             if colorScheme == .dark {
@@ -32,6 +41,7 @@ struct MindCard: View {
                 .font(.title3)
                 .bold(bold)
                 .padding()
+                .textSelection(textSelection)
         }
         .padding(.vertical, 5)
     }
