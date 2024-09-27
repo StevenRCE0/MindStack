@@ -8,6 +8,11 @@ class ForceTouchableView: NSView {
     var onPressureChange: ((Float, Int) -> Void)?
     var handleSwipe: ((NSEvent, Set<NSTouch>?) -> Void)?
     
+    var meanDistance: Float = 0.0
+    var regulatedDelta: CGPoint = .zero
+    var zoomGestureThreshold: Float = 10
+    var scrolling = false
+    
     override var acceptsFirstResponder: Bool { true }
     
     override init(frame frameRect: NSRect) {
@@ -32,12 +37,27 @@ class ForceTouchableView: NSView {
         }
     }
     
-    
     private func handleTouches(with event: NSEvent) {
         // Get all `.touching` touches only (includes `.began`, `.moved` & `.stationary`).
         let touches = event.touches(matching: .touching, in: self)
         // Forward them via delegate.
         handleSwipe?(event, touches)
+        
+        if touches.count == 2 {
+            // updates mean distance between two touches.
+            let touchArray = Array(touches)
+            
+            let newDistance = hypotf(Float(touchArray[0].normalizedPosition.x - touchArray[1].normalizedPosition.x),
+                                  Float(touchArray[0].normalizedPosition.y - touchArray[1].normalizedPosition.y))
+            
+            if abs(meanDistance - newDistance) > zoomGestureThreshold {
+                return
+            }
+            
+            meanDistance = newDistance
+        } else {
+            
+        }
     }
     
     override func touchesBegan(with event: NSEvent) {
