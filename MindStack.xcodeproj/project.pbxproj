@@ -39,6 +39,7 @@
 		B0F273D12BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
 		B0F273D22BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
 		B0F273D32BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
+		B0FC7A822CA892D70093A7CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0FC7A812CA892D70093A7CA /* RichTextKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 			files = (
 				B0BB89F72BD6BDFB007EAFE1 /* HotKey in Frameworks */,
 				B0BB89F42BD6BD9D007EAFE1 /* Defaults in Frameworks */,
+				B0FC7A822CA892D70093A7CA /* RichTextKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +205,7 @@
 			packageProductDependencies = (
 				B0BB89F32BD6BD9D007EAFE1 /* Defaults */,
 				B0BB89F62BD6BDFB007EAFE1 /* HotKey */,
+				B0FC7A812CA892D70093A7CA /* RichTextKit */,
 			);
 			productName = MindStack;
 			productReference = B006C91D2BCFC5EC007FC600 /* MindStack.app */;
@@ -279,6 +282,7 @@
 			packageReferences = (
 				B0BB89F22BD6BD9D007EAFE1 /* XCRemoteSwiftPackageReference "Defaults" */,
 				B0BB89F52BD6BDFB007EAFE1 /* XCRemoteSwiftPackageReference "HotKey" */,
+				B0FC7A802CA892D70093A7CA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 			);
 			productRefGroup = B006C91E2BCFC5EC007FC600 /* Products */;
 			projectDirPath = "";
@@ -517,6 +521,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MindStack/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MindStack;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = CC0;
@@ -550,6 +555,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MindStack/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MindStack;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = CC0;
@@ -697,6 +703,14 @@
 				minimumVersion = 0.2.0;
 			};
 		};
+		B0FC7A802CA892D70093A7CA /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/RichTextKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -709,6 +723,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B0BB89F52BD6BDFB007EAFE1 /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;
+		};
+		B0FC7A812CA892D70093A7CA /* RichTextKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0FC7A802CA892D70093A7CA /* XCRemoteSwiftPackageReference "RichTextKit" */;
+			productName = RichTextKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
