@@ -246,7 +246,7 @@ struct ContentView: View {
                 isPinned: $preferences.pinnedPanel
             ) {
                 VisualEffectView(
-                    material: .underWindowBackground,
+                    material: .sidebar,
                     blendingMode: .behindWindow
                 )
                 .ignoresSafeArea(.all)
