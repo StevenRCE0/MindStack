@@ -10,6 +10,9 @@ import SwiftData
 
 @main
 struct MindStackApp: App {
+    @State private var preferences = AppPreferences()
+    @State private var donationStore = DonationStore()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,10 +28,26 @@ struct MindStackApp: App {
     }()
 
     var body: some Scene {
-        WindowGroup {
+        Window("Main", id: "main") {
             ContentView()
+                .environment(preferences)
+                .environment(donationStore)
         }
         .modelContainer(sharedModelContainer)
+        .windowResizability(.contentSize)
+
+        WindowGroup("Welcome", id: "welcome") {
+            WelcomeView()
+                .environment(preferences)
+                .environment(donationStore)
+        }
+        .windowResizability(.contentSize)
+
+        Settings {
+            SettingsView()
+                .environment(preferences)
+                .environment(donationStore)
+        }
         .windowResizability(.contentSize)
     }
 }

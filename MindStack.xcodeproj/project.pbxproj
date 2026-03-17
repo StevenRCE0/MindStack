@@ -15,6 +15,7 @@
 		B006C9352BCFC5ED007FC600 /* MindStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9342BCFC5ED007FC600 /* MindStackTests.swift */; };
 		B006C93F2BCFC5ED007FC600 /* MindStackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C93E2BCFC5ED007FC600 /* MindStackUITests.swift */; };
 		B006C9412BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006C9402BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift */; };
+		B008E5192F691FE200775A77 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B008E5182F691FE200775A77 /* StoreKit.framework */; };
 		B0BB89F42BD6BD9D007EAFE1 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = B0BB89F32BD6BD9D007EAFE1 /* Defaults */; };
 		B0BB89F72BD6BDFB007EAFE1 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = B0BB89F62BD6BDFB007EAFE1 /* HotKey */; };
 		B0F273AD2BD51DC80047DDE2 /* MindCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273AC2BD51DC80047DDE2 /* MindCard.swift */; };
@@ -40,6 +41,12 @@
 		B0F273D22BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
 		B0F273D32BD681E70047DDE2 /* NewMind.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F273D02BD681E70047DDE2 /* NewMind.swift */; };
 		B0FC7A822CA892D70093A7CA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0FC7A812CA892D70093A7CA /* RichTextKit */; };
+		B10A00012D00000100000001 /* AppShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A00012D00000100000002 /* AppShortcut.swift */; };
+		B10A00012D00000100000003 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A00012D00000100000004 /* AppPreferences.swift */; };
+		B10A00012D00000100000005 /* DonationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A00012D00000100000006 /* DonationStore.swift */; };
+		B10A00012D00000100000007 /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A00012D00000100000008 /* ShortcutRecorderView.swift */; };
+		B10A00012D00000100000009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A00012D0000010000000A /* SettingsView.swift */; };
+		B10A00012D0000010000000B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A00012D0000010000000C /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +79,7 @@
 		B006C93A2BCFC5ED007FC600 /* MindStackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindStackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B006C93E2BCFC5ED007FC600 /* MindStackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStackUITests.swift; sourceTree = "<group>"; };
 		B006C9402BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindStackUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B008E5182F691FE200775A77 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B0F273AC2BD51DC80047DDE2 /* MindCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindCard.swift; sourceTree = "<group>"; };
 		B0F273B02BD529F70047DDE2 /* ForceTouchWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchWrapper.swift; sourceTree = "<group>"; };
 		B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
@@ -81,6 +89,12 @@
 		B0F273C52BD59D230047DDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0F273CE2BD5E74C0047DDE2 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		B0F273D02BD681E70047DDE2 /* NewMind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMind.swift; sourceTree = "<group>"; };
+		B10A00012D00000100000002 /* AppShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcut.swift; sourceTree = "<group>"; };
+		B10A00012D00000100000004 /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		B10A00012D00000100000006 /* DonationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationStore.swift; sourceTree = "<group>"; };
+		B10A00012D00000100000008 /* ShortcutRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderView.swift; sourceTree = "<group>"; };
+		B10A00012D0000010000000A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B10A00012D0000010000000C /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +105,7 @@
 				B0BB89F72BD6BDFB007EAFE1 /* HotKey in Frameworks */,
 				B0BB89F42BD6BD9D007EAFE1 /* Defaults in Frameworks */,
 				B0FC7A822CA892D70093A7CA /* RichTextKit in Frameworks */,
+				B008E5192F691FE200775A77 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +132,7 @@
 				B006C91F2BCFC5EC007FC600 /* MindStack */,
 				B006C9332BCFC5ED007FC600 /* MindStackTests */,
 				B006C93D2BCFC5ED007FC600 /* MindStackUITests */,
+				B008E5172F691FE200775A77 /* Frameworks */,
 				B006C91E2BCFC5EC007FC600 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,6 +156,12 @@
 				B0F273B92BD586600047DDE2 /* Modifiers.swift */,
 				B0F273B52BD585DD0047DDE2 /* FloatingPanel.swift */,
 				B006C9222BCFC5EC007FC600 /* ContentView.swift */,
+				B10A00012D00000100000002 /* AppShortcut.swift */,
+				B10A00012D00000100000004 /* AppPreferences.swift */,
+				B10A00012D00000100000006 /* DonationStore.swift */,
+				B10A00012D00000100000008 /* ShortcutRecorderView.swift */,
+				B10A00012D0000010000000A /* SettingsView.swift */,
+				B10A00012D0000010000000C /* WelcomeView.swift */,
 				B006C9262BCFC5EC007FC600 /* Assets.xcassets */,
 				B006C92B2BCFC5EC007FC600 /* MindStack.entitlements */,
 				B006C9282BCFC5EC007FC600 /* Preview Content */,
@@ -176,6 +198,14 @@
 				B006C9402BCFC5ED007FC600 /* MindStackUITestsLaunchTests.swift */,
 			);
 			path = MindStackUITests;
+			sourceTree = "<group>";
+		};
+		B008E5172F691FE200775A77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B008E5182F691FE200775A77 /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B0F273B42BD57D790047DDE2 /* Model */ = {
@@ -255,7 +285,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					B006C91C2BCFC5EC007FC600 = {
 						CreatedOnToolsVersion = 15.3;
@@ -326,6 +356,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B10A00012D00000100000001 /* AppShortcut.swift in Sources */,
+				B10A00012D00000100000003 /* AppPreferences.swift in Sources */,
+				B10A00012D00000100000005 /* DonationStore.swift in Sources */,
+				B10A00012D00000100000007 /* ShortcutRecorderView.swift in Sources */,
+				B10A00012D00000100000009 /* SettingsView.swift in Sources */,
+				B10A00012D0000010000000B /* WelcomeView.swift in Sources */,
 				B006C9232BCFC5EC007FC600 /* ContentView.swift in Sources */,
 				B006C9252BCFC5EC007FC600 /* Item.swift in Sources */,
 				B0F273D12BD681E70047DDE2 /* NewMind.swift in Sources */,
@@ -421,7 +457,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T57PLMJKEL;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -445,6 +483,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -484,7 +523,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T57PLMJKEL;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -501,6 +542,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -514,10 +556,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MindStack/Preview Content\"";
-				DEVELOPMENT_TEAM = T57PLMJKEL;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MindStack/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MindStack;
@@ -548,10 +592,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MindStack/Preview Content\"";
-				DEVELOPMENT_TEAM = T57PLMJKEL;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MindStack/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MindStack;
@@ -576,11 +622,10 @@
 		B006C9482BCFC5ED007FC600 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T57PLMJKEL;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -595,11 +640,10 @@
 		B006C9492BCFC5ED007FC600 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T57PLMJKEL;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -614,10 +658,9 @@
 		B006C94B2BCFC5ED007FC600 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T57PLMJKEL;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.rcex.MindStackUITests;
@@ -631,10 +674,9 @@
 		B006C94C2BCFC5ED007FC600 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T57PLMJKEL;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.rcex.MindStackUITests;
