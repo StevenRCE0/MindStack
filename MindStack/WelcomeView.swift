@@ -2,7 +2,9 @@ import SwiftUI
 
 struct WelcomeView: View {
     @Environment(AppPreferences.self) private var preferences
+    @Environment(MenuBarController.self) private var menuBarController
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -48,7 +50,9 @@ struct WelcomeView: View {
                 }
                 Spacer()
                 Button("Start Using MindStack") {
+                    preferences.hasSeenOnboarding = true
                     NSApp.keyWindow?.close()
+                    menuBarController.showMainPanel()
                 }
                 .keyboardShortcut(.defaultAction)
             }

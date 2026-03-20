@@ -8,6 +8,10 @@ final class AppPreferences {
         didSet { Defaults[.pinnedPanel] = pinnedPanel }
     }
 
+    var hideMenuBarItem: Bool {
+        didSet { Defaults[.hideMenuBarItem] = hideMenuBarItem }
+    }
+
     var hasSeenOnboarding: Bool {
         didSet { Defaults[.hasSeenOnboarding] = hasSeenOnboarding }
     }
@@ -29,6 +33,7 @@ final class AppPreferences {
 
     init() {
         pinnedPanel = Defaults[.pinnedPanel]
+        hideMenuBarItem = Defaults[.hideMenuBarItem]
         hasSeenOnboarding = Defaults[.hasSeenOnboarding]
         shortcut = AppShortcut(
             keyCode: Defaults[.shortcutKeyCode],

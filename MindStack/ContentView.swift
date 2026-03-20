@@ -220,6 +220,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(AppPreferences.self) private var preferences
     @Environment(DonationStore.self) private var donationStore
+    @Environment(MenuBarController.self) private var menuBarController
     @Environment(\.openWindow) private var openWindow
     @State var showingPanel = false
     @State var hotKey: HotKey? = nil
@@ -233,12 +234,23 @@ struct ContentView: View {
             .onAppear {
                 installHotKey()
                 presentOnboardingIfNeeded()
+                menuBarController.setMenuBarItemHidden(preferences.hideMenuBarItem)
             }
             .onDisappear {
                 uninstallHotKey()
             }
             .onChange(of: preferences.shortcut, initial: false) { _, _ in
                 installHotKey()
+            }
+            .onChange(of: preferences.hideMenuBarItem, initial: true) { _, isHidden in
+                menuBarController.setMenuBarItemHidden(isHidden)
+            }
+            .task {
+                for await _ in NotificationCenter.default.notifications(
+                    named: .showMindStackMainPanel
+                ) {
+                    showPanel()
+                }
             }
             .hidden()
             .floatingPanel(
@@ -276,9 +288,13 @@ struct ContentView: View {
         if showingPanel {
             showingPanel = false
         } else {
-            NSApp.activate(ignoringOtherApps: true)
-            showingPanel = true
+            showPanel()
         }
+    }
+
+    private func showPanel() {
+        NSApp.activate(ignoringOtherApps: true)
+        showingPanel = true
     }
 
     private func presentOnboardingIfNeeded() {

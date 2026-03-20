@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppPreferences.self) private var preferences
     @Environment(DonationStore.self) private var donationStore
+    @Environment(MenuBarController.self) private var menuBarController
     @Environment(\.openWindow) private var openWindow
 
     private var showsSignatureLine: Binding<Bool> {
@@ -27,7 +28,24 @@ struct SettingsView: View {
                 .foregroundStyle(.secondary)
 
                 Button("Show Intro Again") {
+                    preferences.hasSeenOnboarding = false
                     openWindow(id: "welcome")
+                }
+            }
+
+            Section("App") {
+                Toggle("Hide menu bar item", isOn: $preferences.hideMenuBarItem)
+
+                HStack {
+                    Button("Show Main Panel") {
+                        menuBarController.showMainPanel()
+                    }
+
+                    Spacer()
+
+                    Button("Quit MindStack") {
+                        NSApp.terminate(nil)
+                    }
                 }
             }
 

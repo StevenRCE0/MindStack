@@ -10,6 +10,10 @@ import Defaults
 
 extension Defaults.Keys {
     static let pinnedPanel = Key<Bool>("pinnedPanel", default: false)
+    static let hideMenuBarItem = Key<Bool>(
+        "hideMenuBarItem",
+        default: false
+    )
     static let hasSeenOnboarding = Key<Bool>(
         "hasSeenOnboarding",
         default: false
